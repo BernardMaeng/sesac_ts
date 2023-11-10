@@ -73,5 +73,5 @@ console.log(mergedArrayWithSpread); // [1, 2, 3, 4, 5, 6]
 const originalArray = [1, 2, 3];
 const elementsToInsert = [4, 5, 6];
 
-cooriginalArray.splice(1, 0, ...elementsToInsert); //1번 인덱스에 elementsToInsert를 추가 (0개 제거)
+originalArray.splice(1, 0, ...elementsToInsert); //1번 인덱스에 elementsToInsert를 추가 (0개 제거)
 console.log(originalArray); // [1,4,5,6,2,3]
