@@ -1,16 +1,11 @@
+import {v4 as uuidv4} from 'uuid';
+
 function getRandomItem(array) {
     return array[Math.floor(Math.random() * array.length)];
 }
 
 function generateRandomId() {
-    const segments = [
-        Math.random().toString(16).substring(2, 10),  // 8자리 코드
-        Math.random().toString(16).substring(2, 6),   // 4자리 코드
-        Math.random().toString(16).substring(2, 6),   // 4자리 코드
-        Math.random().toString(16).substring(2, 6),   // 4자리 코드
-        Math.random().toString(16).substring(2, 14),  // 12자리 코드
-    ];
-    return segments.join('-');
+    return uuidv4();
 }
 
 function generateRandomName() {
@@ -28,12 +23,12 @@ function generateRandomBirthdate(birthYear) {
 }
 
 function generateRandomAddress() {
-    const city = getRandomItem(["서울", "부산", "대전", "광주", "인천", "대구", "울산", "세종"]);
-    const gu = getRandomItem(["서구", "중구", "북구", "남구", "동구", "강서구", "강남구", "강북구", "강동구"]);
+    const cities = getRandomItem(["서울", "부산", "대전", "광주", "인천", "대구", "울산", "세종"]);
+    const districts = getRandomItem(["서구", "중구", "북구", "남구", "동구", "강서구", "강남구", "강북구", "강동구"]);
     const streetType = Math.random() < 0.5 ? '로' : '길';
     const streetNumber = Math.floor(Math.random() * 99) + 1; // 랜덤으로 1부터 99까지 숫자 생성
     const addressNumber = Math.floor(Math.random() * 99) + 1;
-    return `${city} ${gu} ${streetNumber}${streetType} ${addressNumber}`;
+    return `${cities} ${districts} ${streetNumber}${streetType} ${addressNumber}`;
 }
 
 function generateRandomUser() {
@@ -57,7 +52,7 @@ function generateRandomUser() {
 }
 
 export function getRandomUserId() {
-    return getRandomUser(users).id;
+    return getRandomItem(users).id;
 }
 
 export const users = [];
@@ -66,8 +61,4 @@ for (let i = 0; i < 1000; i++) {
     const user = generateRandomUser();
     users.push(user);
 }
-try {
-    console.log(users);
-} catch (error) {
-    console.error("유저 데이터 로깅 중 오류 발생 :", error)
-}
+

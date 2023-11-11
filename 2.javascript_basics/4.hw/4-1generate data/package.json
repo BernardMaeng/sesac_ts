@@ -1,6 +1,9 @@
 {
     "type": "module",
     "scripts": {
-      "start": "node orderData.js"
+        "start": "node orderData.js"
+    },
+    "dependencies": {
+        "uuid": "^9.0.1"
     }
-  }
+}

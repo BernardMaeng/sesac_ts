@@ -1,20 +1,9 @@
-import { getRandomUserId } from './userData.js';
-import { getRandomStoreId } from './storeData.js';
-
-function getRandomItem(array) {
-    return array[Math.floor(Math.random() * array.length)];
-}
-
+import {v4 as uuidv4} from 'uuid';
+import { getRandomUserId,users } from './userData.js';
+import { getRandomStoreId,stores } from './storeData.js';
 
 function generateRandomId() {
-    const segments = [
-        Math.random().toString(16).substring(2, 10),
-        Math.random().toString(16).substring(2, 6),
-        Math.random().toString(16).substring(2, 6),
-        Math.random().toString(16).substring(2, 6),
-        Math.random().toString(16).substring(2, 14),
-    ];
-    return segments.join('-');
+    return uuidv4();
 }
 
 function generateRandomOrderDate() {
@@ -41,11 +30,9 @@ function generateRandomOrderData() {
     };
 }
 
-const orderData = [];
+const orders = [];
 
 for (let i = 0; i < 10000; i++) {
     const order = generateRandomOrderData();
-    orderData.push(order);
+    orders.push(order);
 }
-
-console.log(orderData);
