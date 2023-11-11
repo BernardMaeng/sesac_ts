@@ -28,7 +28,7 @@ function generateRandomBirthdate(birthYear) {
 }
 
 function generateRandomAddress() {
-    const city = getRandomItem(["서울", "경기", "강원", "대전", "세종", "청주", "충주", ""]);
+    const city = getRandomItem(["서울", "부산", "대전", "광주", "인천", "대구", "울산", "세종"]);
     const gu = getRandomItem(["서구", "중구", "북구", "남구", "동구", "강서구", "강남구", "강북구", "강동구"]);
     const streetType = Math.random() < 0.5 ? '로' : '길';
     const streetNumber = Math.floor(Math.random() * 99) + 1; // 랜덤으로 1부터 99까지 숫자 생성
@@ -56,7 +56,11 @@ function generateRandomUser() {
     };
 }
 
-const users = [];
+export function getRandomUserId() {
+    return getRandomUser(users).id;
+}
+
+export const users = [];
 
 for (let i = 0; i < 1000; i++) {
     const user = generateRandomUser();
