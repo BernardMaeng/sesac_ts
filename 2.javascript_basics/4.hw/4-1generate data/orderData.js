@@ -1,6 +1,11 @@
 import {v4 as uuidv4} from 'uuid';
 import { getRandomUserId,users } from './userData.js';
 import { getRandomStoreId,stores } from './storeData.js';
+import fs from 'fs';
+
+function getRandomOrder(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
 
 function generateRandomId() {
     return uuidv4();
@@ -29,10 +34,26 @@ function generateRandomOrderData() {
         ordered_at,
     };
 }
+export function getRandomOrderId() {
+    const randomOrder = getRandomOrder(orders);
+    return randomOrder.id;
+}
 
-const orders = [];
+export const orders = [];
 
 for (let i = 0; i < 10000; i++) {
     const order = generateRandomOrderData();
     orders.push(order);
 }
+
+// CSV 파일 생성 함수
+ function createCSVFile(filename, data) {
+     fs.writeFileSync(filename, data);
+     console.log('CSV 파일이 생성되었습니다.');
+ }
+
+// orders 데이터를 CSV 파일로 저장
+ const csvData = orders.map(order => `${order.id},${order.user_id},${order.store_id},${order.ordered_at}`);
+ createCSVFile('orders.csv', 'id,user_id,store_id,ordered_at\n' + csvData.join('\n'));
+
+console.log(orders);
